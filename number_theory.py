@@ -7,6 +7,18 @@ def nCr(n,r):
     else:
         return 0
 
+def partitions(n,I=1):
+    """partitions(n,I=1) is a generator that lists all partitions of a positive integer n with partition size >= I.
+        Example Usage:
+        > partition = partitions(4,2)
+        > for p in partition:
+        >    print p
+        """
+    yield (n,)
+    for j in range(I,n//2+1):
+        for p in partitions(n-j,j):
+            yield p + (j,)
+            
 def Stirling2(n,k):
     """Stirling numbers of the second kind S(n,k)"""
     num = 0
